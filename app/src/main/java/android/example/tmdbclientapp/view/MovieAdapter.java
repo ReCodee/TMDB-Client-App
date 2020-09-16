@@ -1,6 +1,8 @@
 package android.example.tmdbclientapp.view;
 
 import android.content.Context;
+import android.content.Intent;
+import android.example.tmdbclientapp.MovieActivity;
 import android.example.tmdbclientapp.R;
 import android.example.tmdbclientapp.model.Movie;
 import android.view.LayoutInflater;
@@ -70,6 +72,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             rate = (TextView) itemView.findViewById(R.id.tvRating);
             movieTitle = (TextView) itemView.findViewById(R.id.tvTitle);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, MovieActivity.class);
+                    intent.putExtra("movie", movieArrayList.get(getAdapterPosition()));
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }
