@@ -2,7 +2,6 @@ package android.example.tmdbclientapp.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.example.tmdbclientapp.MovieActivity;
 import android.example.tmdbclientapp.R;
 import android.example.tmdbclientapp.model.Movie;
 import android.view.LayoutInflater;

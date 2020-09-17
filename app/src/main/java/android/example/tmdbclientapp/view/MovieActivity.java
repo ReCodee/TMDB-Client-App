@@ -1,6 +1,7 @@
-package android.example.tmdbclientapp;
+package android.example.tmdbclientapp.view;
 
 import android.content.Intent;
+import android.example.tmdbclientapp.R;
 import android.example.tmdbclientapp.model.Movie;
 import android.os.Bundle;
 
