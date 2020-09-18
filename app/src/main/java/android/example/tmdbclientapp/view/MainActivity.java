@@ -2,6 +2,7 @@ package android.example.tmdbclientapp.view;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.res.Configuration;
 import android.example.tmdbclientapp.R;
+import android.example.tmdbclientapp.databinding.ActivityMainBinding;
+import android.example.tmdbclientapp.databinding.ActivityMovieBinding;
 import android.example.tmdbclientapp.model.Movie;
 import android.example.tmdbclientapp.model.MovieDBResponse;
 import android.example.tmdbclientapp.service.MovieDataService;
@@ -28,14 +31,15 @@ public class MainActivity extends AppCompatActivity {
     private MovieAdapter adapter;
     private ArrayList<Movie> arrayList;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ActivityMainBinding activityMainBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
      getSupportActionBar().setTitle("Popular Movies");
-
+     activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
      viewPopularMovies();
-      swipeRefreshLayout = findViewById(R.id.swipe);
+      swipeRefreshLayout = activityMainBinding.swipe;
       swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
           @Override
           public void onRefresh() {
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showOnRecyclerView(){
-        recyclerView = findViewById(R.id.rvMovies);
+        recyclerView = activityMainBinding.rvMovies;
         adapter = new MovieAdapter(this, arrayList);
         if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             recyclerView.setLayoutManager(new GridLayoutManager(this, 2));

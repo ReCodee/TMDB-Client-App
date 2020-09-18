@@ -3,7 +3,9 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     buildToolsVersion "30.0.0"
-
+    dataBinding{
+        enabled = true
+    }
     defaultConfig {
         applicationId "android.example.tmdbclientapp"
         minSdkVersion 21

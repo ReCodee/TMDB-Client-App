@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="movie"
+            type="android.example.tmdbclientapp.model.Movie" />
+    </data>
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:adjustViewBounds="true">
 
     <androidx.cardview.widget.CardView
@@ -22,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:id="@+id/ivMovie"
+                bind:posterPath="@{movie.posterPath}"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitXY"/>
 
@@ -33,6 +43,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingTop="10dp"
+                android:text="@{movie.title}"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp"/>
 
@@ -42,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvTitle"
                 android:paddingLeft="10dp"
+                android:text="@{Double.toString(movie.voteAverage)}"
                 android:paddingRight="10dp"
                 android:paddingBottom="5dp"
                 android:textColor="@color/colorAccent"
@@ -53,3 +65,4 @@
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
+</layout>
