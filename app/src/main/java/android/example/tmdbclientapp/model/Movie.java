@@ -5,10 +5,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
 import androidx.databinding.library.baseAdapters.BR;
+import androidx.recyclerview.widget.DiffUtil;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.annotations.Expose;
@@ -257,5 +259,19 @@ public class Movie extends BaseObservable implements Parcelable
     public int describeContents() {
         return 0;
     }
+
+
+    public static final DiffUtil.ItemCallback<Movie> CALLBACK = new DiffUtil.ItemCallback<Movie>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return oldItem.id == newItem.id;
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return true;
+        }
+    };
+
 
 }

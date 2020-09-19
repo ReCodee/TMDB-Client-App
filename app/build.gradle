@@ -27,7 +27,9 @@ android {
 dependencies {
     def lifecycle_version = "2.2.0"
     def arch_version = "2.1.0"
+    def paging_version = "2.1.2"
 
+    implementation "androidx.paging:paging-runtime:$paging_version"
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     // LiveData

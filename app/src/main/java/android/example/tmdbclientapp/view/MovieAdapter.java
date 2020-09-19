@@ -13,20 +13,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder>{
+public class MovieAdapter extends PagedListAdapter<Movie, MovieAdapter.MovieViewHolder> {
 
     private Context context;
-    private ArrayList<Movie> movieArrayList;
 
-    public MovieAdapter(Context context, ArrayList<Movie> movieArrayList) {
+    public MovieAdapter(Context context) {
+        super(Movie.CALLBACK);
         this.context = context;
-        this.movieArrayList = movieArrayList;
     }
 
     @NonNull
@@ -40,14 +40,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
 
-     Movie movie = movieArrayList.get(position);
+     Movie movie = getItem(position);
      holder.movieListItemBinding.setMovie(movie);
 
-    }
-
-    @Override
-    public int getItemCount() {
-        return movieArrayList.size();
     }
 
 
@@ -63,7 +58,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, MovieActivity.class);
-                    intent.putExtra("movie", movieArrayList.get(getAdapterPosition()));
+                       intent.putExtra("movie", getItem(getAdapterPosition()));
                     context.startActivity(intent);
                 }
             });
