@@ -21,6 +21,7 @@ import android.example.tmdbclientapp.model.MovieDBResponse;
 import android.example.tmdbclientapp.service.MovieDataService;
 import android.example.tmdbclientapp.service.RetrofitInstance;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,20 @@ public class MainActivity extends AppCompatActivity {
           @Override
           public void onRefresh() {
               viewPopularMovies();
+
+              //to hide progressBar after few seconds
+              new CountDownTimer(2000,100) {
+                  @Override
+                  public void onTick(long millisUntilFinished) {
+
+                  }
+
+                  @Override
+                  public void onFinish() {
+                      swipeRefreshLayout.setRefreshing(false);
+                  }
+              }.start();
+
           }
       });
     }
